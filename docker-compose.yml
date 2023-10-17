@@ -1,0 +1,45 @@
+version: '3'
+
+networks:
+  enterprise_net:
+    driver: bridge
+
+services:
+  mysqlbbdd:
+    build:
+      context: .
+      dockerfile: ./bbdd/Dockerfile
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: enterprise_backend
+    networks:
+      - enterprise_net
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  vmback:
+    build:
+      context: .
+      dockerfile: ./back/Dockerfile
+    depends_on:
+      - mysqlbbdd
+    networks:
+      - enterprise_net
+    ports:
+      - "8080:80" 
+      
+
+  vmfront:
+    build:
+      context: .
+      dockerfile: ./front/Dockerfile
+    depends_on:
+      - mysqlbbdd
+    networks:
+      - enterprise_net
+
+volumes:
+  mysql-data:

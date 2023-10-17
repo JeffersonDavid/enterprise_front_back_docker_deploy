@@ -40,6 +40,8 @@ services:
       - mysqlbbdd
     networks:
       - enterprise_net
+    ports:
+      - "3000:3000"
 
 volumes:
   mysql-data:

@@ -41,6 +41,8 @@ EXPOSE 80
 
 # Actualiza las dependencias de Composer
 RUN composer update
+RUN php artisan key:generate
+RUN php artisan passport:keys
 
 # Comando para iniciar la aplicación
 CMD ["apache2-foreground"]

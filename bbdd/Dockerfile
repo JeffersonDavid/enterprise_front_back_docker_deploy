@@ -1,5 +1,5 @@
 # Utiliza la imagen oficial de MySQL 8
-FROM mysql:8
+FROM mysql:8.0
 
 # Establece las variables de entorno para la base de datos
 ENV MYSQL_DATABASE=enterprise_backend

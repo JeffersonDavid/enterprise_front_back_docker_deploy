@@ -4,7 +4,7 @@ FROM node:20
 WORKDIR /usr/src/app
 
 # Copia el resto de los archivos de la aplicación
-RUN https://github.com/JeffersonDavid/enterprise_frontend.git .
+RUN git clone https://github.com/JeffersonDavid/enterprise_frontend.git .
 # Instala las dependencias utilizando npm
 RUN npm install
 # Expone el puerto en el que la aplicación de Next.js se ejecutará (por defecto es 3000)
